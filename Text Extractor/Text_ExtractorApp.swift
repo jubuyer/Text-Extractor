@@ -13,8 +13,10 @@ struct Text_ExtractorApp: App {
     init() {
         // Binds persisted shortcut (if any) to action at launch.
         MASShortcutBinder.shared().bindShortcut(withDefaultsKey: "userHotkey") {
-            print("Shortcut triggered")
-            // TODO: call capture/OCR
+            ScreenCaptureManager.shared.showOverlay { selectedRect in
+                    print("Selected rect: \(selectedRect)")
+                    // TODO: pass this to OCR
+            }
         }
     }
 
